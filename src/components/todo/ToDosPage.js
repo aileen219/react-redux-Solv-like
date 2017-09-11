@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import ToDoInput from './ToDoInput';
+import ToDoDisplay from './ToDoDisplay';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as todoActions from '../../actions/todoAction';
@@ -29,10 +30,15 @@ class ToDosPage extends Component {
 
   render() {
     return (
-      <ToDoInput
-        handleOnClick={this.handleOnClick}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+        <ToDoInput
+          handleOnClick={this.handleOnClick}
+          handleSubmit={this.handleSubmit}
+        />
+        <ToDoDisplay
+          todos={this.state.todo}
+        />
+      </div>
     );
   }
 }
@@ -42,12 +48,13 @@ ToDosPage.propTypes = {
   handleOnClick: PropTypes.func,
   handleSubmit: PropTypes.func,
   onClick: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
+  todos: PropTypes.array
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    todo: state.todos || []
+    todos: state.todos || []
   };
 };
 

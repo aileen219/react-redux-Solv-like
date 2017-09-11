@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import { reduxForm } from 'redux-form';
 
 class ToDoInput extends Component {
-
   isChecked() {
     if (this.props.checked === true || this.props.checked === false) {
       return this.props.checked;
@@ -12,6 +11,7 @@ class ToDoInput extends Component {
   }
 
   render() {
+    console.log('our props', this.props);
     return (
       <form onSubmit={this.props.handleSubmit}>
         <div>
