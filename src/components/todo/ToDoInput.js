@@ -21,8 +21,16 @@ class ToDoInput extends Component {
           <span className="input-group-addon">
             <input type="checkbox" onClick={this.isChecked()} checked={this.props.checked}/>
           </span>
-          <input type="text" key={this.props.index} title={this.props.title} className="form-control" aria-label="Text input with radio button" />
+          <input
+            type="text"
+            key={this.props.index}
+            onChange={this.props.onTitleChange}
+            value={this.props.title}
+            className="form-control"
+            aria-label="Text input with radio button"
+          />
         </div>
+        <input className="btn btn-success" type="submit" value="Add" onClick={this.props.handleSubmit} />
       </form>
     );
   }
@@ -33,6 +41,7 @@ ToDoInput.propTypes = {
   handleSubmit: PropTypes.func,
   index: PropTypes.number,
   isChecked: PropTypes.func,
+  onTitleChange: PropTypes.func,
   title: PropTypes.string
 };
 
