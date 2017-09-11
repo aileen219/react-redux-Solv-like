@@ -3,9 +3,10 @@ import NavBar from '../common/Navbar';
 
 class Layout extends Component {
   render() {
+    const { location } = this.props.children;
     return (
       <div className="container-fluid">
-        <NavBar />
+        <NavBar location={location}/>
         {this.props.children}
       </div>
     );
