@@ -19,13 +19,12 @@ class ToDoInput extends Component {
         </div>
         <div className="input-group">
           <span className="input-group-addon">
-            <input type="checkbox" onClick={this.isChecked()} checked={this.props.checked}/>
+            <input type="checkbox" onClick={this.isChecked} checked={this.props.checked}/>
           </span>
           <input
             type="text"
             key={this.props.index}
             onChange={this.props.onTitleChange}
-            value={this.props.title}
             className="form-control"
             aria-label="Text input with radio button"
           />

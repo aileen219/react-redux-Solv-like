@@ -17,13 +17,16 @@ class ToDosPage extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
-  }
+    this.onTitleChange = this.onTitleChange.bind(this);
+    this.todoRow = this.todoRow.bind(this);
+   }
 
   handleOnClick(event) {
     this.props.onClick(event);
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     this.props.actions.createToDo(this.state.todo);
   }
 
@@ -41,16 +44,17 @@ class ToDosPage extends Component {
   }
 
   render() {
-    console.log('our todos', this.state.todos);
+    console.log('our todos', this.state.todo);
     return (
       <div>
         <ToDoInput
           handleOnClick={this.handleOnClick}
           onTitleChange={this.onTitleChange}
           handleSubmit={this.handleSubmit}
+          value={this.state.todo.title}
         />
         <h1>Tasks</h1>
-        {this.props.todos.map(this.todoRow)}
+          {this.props.todos.map(this.todoRow)}
       </div>
     );
   }
