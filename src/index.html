@@ -6,5 +6,18 @@
   <body>
     <div id="layout"></div>
     <script src="/bundle.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBiUg_jbXqbuaAM54WlnEKKr7vyT7qDMHk",
+        authDomain: "react-to-do-d05ed.firebaseapp.com",
+        databaseURL: "https://react-to-do-d05ed.firebaseio.com",
+        projectId: "react-to-do-d05ed",
+        storageBucket: "react-to-do-d05ed.appspot.com",
+        messagingSenderId: "349737512937"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>

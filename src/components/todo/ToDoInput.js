@@ -1,50 +1,61 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 
 class ToDoInput extends Component {
-  isChecked() {
-    if (this.props.checked === true || this.props.checked === false) {
-      return this.props.checked;
-    }
+  constructor(props) {
+    super(props);
 
-    return false;
   }
 
   render() {
     console.log('our props', this.props);
+    const props = this.props;
+
+    const {
+      fields: {
+        title
+      },
+      handleFormSubmit
+    } = props;
+
+    const postToDoForm = (form) => {
+      const todo = {
+        title: form.title
+      };
+      handleFormSubmit(todo);
+    };
+
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={handleFormSubmit(postToDoForm)}>
         <div>
           <label>Your New Task!</label>
         </div>
         <div className="input-group">
-          <span className="input-group-addon">
-            <input type="checkbox" onClick={this.isChecked} checked={this.props.checked}/>
-          </span>
           <input
             type="text"
-            key={this.props.index}
-            onChange={this.props.onTitleChange}
+            id="todoItem"
             className="form-control"
-            aria-label="Text input with radio button"
+            placeholder="Your Task"
+            aria-describedby="sizing-addon1"
           />
         </div>
-        <input className="btn btn-success" type="submit" value="Add" onClick={this.props.handleSubmit} />
+        <input className="btn btn-success" type="submit" />
       </form>
     );
   }
 }
 
 ToDoInput.propTypes = {
-  checked: PropTypes.bool,
-  handleSubmit: PropTypes.func,
-  index: PropTypes.number,
-  isChecked: PropTypes.func,
-  onTitleChange: PropTypes.func,
-  title: PropTypes.string
+  fields: PropTypes.array,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  postToDoForm: PropTypes.func
 };
 
-
+const formName = 'todo';
+const fields = [ 'todo', 'completed', 'rank' ];
 export default reduxForm({
-  form: 'todo'
+  form: formName,
+  fields
 })(ToDoInput);
